@@ -1,14 +1,19 @@
 import { createDecorator } from 'vue-class-component'
 import Container from './Container'
 
-export function InjectComponent(sym) {
+export function InjectComponent(map) {
     return createDecorator((options, key) => {
+        if (typeof map !== 'object') {
+            throw new Error('map needs to be an object')
+        }
         if (!options.components) {
             options.components = {}
         }
-        let comp = Container.get(sym)
-        let _name = comp.prototype.constructor.name
-        options.components[_name] = comp
+        Object.entries(map).forEach((value) => {
+            let [name, sym] = value
+            let comp = Container.get(sym)
+            options.components[name] = comp
+        })
     })
 }
 
