@@ -1,5 +1,5 @@
 import should from 'should'
-import Container from '../lib/Container'
+import { Container } from '../lib'
 import { Inject, InjectComponent } from '../lib/Inject'
 import Component from 'vue-class-component'
 import Vue from 'vue'
@@ -37,11 +37,9 @@ describe("Inject", function () {
 
     describe("@InjectComponent", function () {
         it("should set components via a mapping object", function () {
-            Container.set(TYPES.compa, CompA)
             const vm = new CompB()
             vm.$mount()
-            console.log(pretty(vm.$options))
-            // should.exist(b.components['comp-a'])
+            should.exist(vm.$options.components['comp-a'])
         })
     })
 })
