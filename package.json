@@ -1,6 +1,6 @@
 {
   "name": "vue-decorator-inject",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Dependency injection with ES6 decorators for Vue.js",
   "main": "index.js",
   "scripts": {
@@ -37,7 +37,6 @@
     "vue": "^2.5.11"
   },
   "dependencies": {
-    "js-object-pretty-print": "^0.3.0",
     "vue-class-component": "^6.1.2"
   }
 }

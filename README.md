@@ -9,6 +9,13 @@ If you are using Webpack or similar:
 
 Otherwise `--save` is probably more sensible.
 
+### Introduction
+
+This library combines a container with an interface similar to containers in Symfony
+with the concept of abstract symbols as keys in your container. This way autocompletion
+features in your IDE can be fully used. Additionally dependency injection can be done by
+using decorators to make your application as readable as possible.
+
 ### Design and usage
 
 Read the documentation for [vue-class-component](https://github.com/vuejs/vue-class-component) beforehand. This package is based upon it.
