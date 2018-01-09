@@ -1,6 +1,6 @@
 {
   "name": "vue-decorator-inject",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Dependency injection with ES6 decorators for Vue.js",
   "main": "index.js",
   "scripts": {

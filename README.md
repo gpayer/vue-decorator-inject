@@ -85,7 +85,7 @@ Container.set(TYPES.ComponentA, ComponentA)
 
 // use 'register' to register class definitions, which have to be instantiated
 // (with optional dependencies)
-Container.register(TYPES.MyService, [TYPES.SomeConstant])
+Container.register(TYPES.MyService, MyService, [TYPES.SomeConstant])
 
 // use 'factory' to register factory functions (with optional dependencies)
 Container.factory(TYPES.MyFactory, myFactory, [TYPES.MyService])
@@ -120,7 +120,10 @@ In the above example `@Inject` is used on an object field to inject your routing
 // router.js
 
 import TYPES from './types'
+import Vue from 'vue'
 import Router from 'vue-router'
+
+Vue.use(Router)
 
 export default function routeDef(ComponentA, ComponentB) {
     return new Router({
