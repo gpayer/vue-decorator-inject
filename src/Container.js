@@ -2,6 +2,7 @@ export class ContainerEntry {
     loaded = false
     loading = false
     isFactory = false
+    once = true
     dependencies = []
     clazz = null
     instance = null
@@ -26,11 +27,11 @@ export class ContainerEntry {
             deps.push(Container.get(sym))
         })
         if (this.isFactory) {
-            this.loading = false
-            return this.clazz(...deps)
+            this.instance = this.clazz(...deps)
+        } else {
+            this.instance = Reflect.construct(this.clazz, deps)
         }
-        this.instance = Reflect.construct(this.clazz, deps)
-        this.loaded = true
+        this.loaded = this.once
         this.loading = false
         return this.instance
     }
@@ -78,9 +79,16 @@ export default class Container {
         Container.bindings.set(sym, c)
     }
 
-    static factory(sym, factoryFn, deps) {
+    static factoryOnce(sym, factoryFn, deps) {
+        Container.factory(sym, factoryFn, deps, true)
+    }
+
+    static factory(sym, factoryFn, deps, once) {
         if (!deps) {
             deps = []
+        }
+        if (!once) {
+            once = false
         }
         if (typeof sym !== 'symbol') {
             throw new Error('key is not a symbol')
@@ -89,6 +97,7 @@ export default class Container {
         c.clazz = factoryFn
         c.dependencies = deps
         c.isFactory = true
+        c.once = once
         Container.bindings.set(sym, c)
     }
 }

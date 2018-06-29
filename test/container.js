@@ -109,5 +109,17 @@ describe("Container", function () {
             }, [sB])
             should(Container.get(f)).be.exactly(2)
         })
+
+        it("shoud have a working factoryOnce method", function () {
+            Container.clear()
+            let s = Symbol()
+            let c = 0
+            Container.factoryOnce(s, function () {
+                c += 1
+                return c
+            })
+            should(Container.get(s)).be.exactly(1)
+            should(Container.get(s)).be.exactly(1)
+        })
     })
 })

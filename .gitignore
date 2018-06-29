@@ -61,5 +61,7 @@ typings/
 *.swp
 *~
 
+.idea
+
 # Compiled tests
 testc
